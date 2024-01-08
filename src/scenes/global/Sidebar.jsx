@@ -1,12 +1,8 @@
 import { useState } from "react";
 import { Menu, MenuItem } from 'react-pro-sidebar';  // Updated import
-
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
 import { Link } from "react-router-dom";
 import "react-pro-sidebar/dist/css/styles.css";
-
-
-
 import { tokens } from "../../theme";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
@@ -24,17 +20,23 @@ import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 const Item = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+
+  const handleItemClick = () => {
+    setSelected(title);
+  };
+
   return (
     <MenuItem
-      className={selected === title ? 'active' : ''}  // Add 'active' class for styling active menu item
+      className={selected === title ? 'active' : ''}
       style={{
         color: colors.grey[100],
       }}
-      onClick={() => setSelected(title)}
+      onClick={handleItemClick}
       icon={icon}
     >
-      <Typography>{title}</Typography>
-      <Link to={to} />
+      <Link to={to} style={{ textDecoration: 'none', color: 'inherit' }}>
+        <Typography>{title}</Typography>
+      </Link>
     </MenuItem>
   );
 };
@@ -110,10 +112,10 @@ const Sidebar = () => {
                 fontWeight="bold"
                 sx={{ m: "10px 0 0 0" }}
               >
-                Ed Roh
+                Kunal pal
               </Typography>
               <Typography variant="h5" color={colors.greenAccent[500]}>
-                VP Fancy Admin
+                VIP Fancy Admin
               </Typography>
             </Box>
           </Box>
